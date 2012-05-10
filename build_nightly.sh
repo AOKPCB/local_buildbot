@@ -37,7 +37,7 @@ if [ "$BACON" = "true" ]; then
 else
     ZIP=$(grep "Package OTA" "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log | cut -f5 -d '/')
 fi
-OUTD=/home/remicks/public_html/
+OUTD=/home/remicks/public_html
 mkdir $OUTD/$2/
 cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$2/aokpcb_$2-$(date +%Y%m%d-%H%M).zip
 
