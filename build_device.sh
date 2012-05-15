@@ -37,7 +37,7 @@ if [ "$BACON" = "true" ]; then
 else
     ZIP=$(grep "Package OTA" "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log | cut -f5 -d '/')
 fi
-OUTD=$(echo $(cd ../upload && pwd))
+OUTD=/home/remicks/public_html/official_releases
 rm $OUTD/$ZIP
 cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$ZIP
 
