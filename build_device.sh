@@ -46,7 +46,7 @@ echo "$2 build complete"
 
 # md5sum list
 cd $OUTD
-md5sum $ZIP | cat >> md5sum
+md5sum $ZIP | cat >> $ZIP.md5
 
 # upload
 echo "checking on upload reference file"
