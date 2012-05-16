@@ -45,7 +45,7 @@ else
 fi
 
 # make sure file exists
-if [ ! -f vendor/$VENDOR/vendorsetup.shh ]; then
+if [ ! -f vendor/$VENDOR/vendorsetup.sh ]; then
     echo "vendorsetup.sh not found"
     echo "exiting..."
     exit 1
