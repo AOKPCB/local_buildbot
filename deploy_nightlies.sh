@@ -3,6 +3,8 @@
 KANGS=/home/remicks
 BUILD_ROOT=`pwd`
 
+cd $BUILD_ROOT
+repo sync
 cd $KANGS
 ./cherrypicks.sh
 cd $BUILD_ROOT
