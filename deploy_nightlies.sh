@@ -1,7 +1,7 @@
 #!/bin/bash
 
 KANGS=/home/remicks
-BUILD_ROOT=`pwd`
+BUILD_ROOT=/home/remicks/android/AOKPCB
 
 cd $KANGS
 ./cherrypicks.sh
