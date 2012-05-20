@@ -43,7 +43,7 @@ else
 fi
 OUTD=/home/remicks/public_html
 mkdir $OUTD/$2/
-cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$2/aokpcb_$2-$(date +%Y%m%d-%H%M).zip
+cp "$ANDROID_PRODUCT_OUT"/aokpcb_*.zip $OUTD/$2/aokpcb_$2-$(date +%Y%m%d-%H%M).zip
 
 # finish
 echo "$2 build complete"
