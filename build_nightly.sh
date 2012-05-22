@@ -42,8 +42,11 @@ else
     ZIP=$(grep "Package OTA" "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log | cut -f5 -d '/')
 fi
 OUTD=/home/remicks/public_html
+PRIV=/home/remicks/private_html
 mkdir $OUTD/$2/
+mkdir $PRIV/$2/
 cp "$ANDROID_PRODUCT_OUT"/aokpcb_*.zip $OUTD/$2/aokpcb_$2-$(date +%Y%m%d-%H%M).zip
+cp "$ANDROID_PRODUCT_OUT"/*_bot.log $PRIV/$2/aokpcb_$2-$(date +%Y%m%d-%H%M)_bot.log
 
 # finish
 echo "$2 build complete"
@@ -52,4 +55,4 @@ echo "$2 build complete"
 cd $OUTD/$2/
 md5sum aokpcb_$2-$(date +%Y%m%d-%H%M).zip | cat >> aokpcb_$2-$(date +%Y%m%d-%H%M).zip.md5
 
-cd $BUILT_ROOT
+cd $BUILD_ROOT
