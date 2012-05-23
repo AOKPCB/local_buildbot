@@ -4,10 +4,7 @@
 # $2 should be device name
 # select device and prepare varibles
 BUILD_ROOT=`pwd`
-CCACHE=$BUILD_ROOT/prebuilt/linux-x86/ccache
 
-cd $CCACHE
-./ccache -M 40G
 cd $BUILD_ROOT
 . build/envsetup.sh
 lunch $1
