@@ -1,11 +1,8 @@
 #!/bin/bash
 
-KANGS=/home/remicks
 BUILD_ROOT=`pwd`
-
-cd $KANGS
-./cherrypicks.sh
 cd $BUILD_ROOT
+repo sync
 . build/envsetup.sh
 
 # parse options
