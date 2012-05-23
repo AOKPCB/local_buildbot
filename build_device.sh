@@ -4,7 +4,6 @@
 # $2 should be device name
 # select device and prepare varibles
 BUILD_ROOT=`pwd`
-
 cd $BUILD_ROOT
 . build/envsetup.sh
 lunch $1
@@ -27,9 +26,9 @@ fi
 
 # build
 if [ "$BACON" = "true" ]; then
-    make -j4 bacon 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
+    make -j$(($(grep processor /proc/cpuinfo | wc -l) * 2)) bacon 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
 else
-    make -j4 otapackage 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
+    make -j$(($(grep processor /proc/cpuinfo | wc -l) * 2)) otapackage 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
 fi
 
 # clean out of previous zip
@@ -38,7 +37,7 @@ if [ "$BACON" = "true" ]; then
 else
     ZIP=$(grep "Package OTA" "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log | cut -f5 -d '/')
 fi
-OUTD=/home/remicks/public_html/official_releases
+OUTD=$(echo $(cd ../upload && pwd))
 rm $OUTD/$ZIP
 cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$ZIP
 
@@ -47,7 +46,7 @@ echo "$2 build complete"
 
 # md5sum list
 cd $OUTD
-md5sum $ZIP | cat >> $ZIP.md5
+md5sum $ZIP | cat >> md5sum
 
 # upload
 echo "checking on upload reference file"
@@ -64,4 +63,4 @@ else
     echo "No upload file found (or set to +x), build complete."
 fi
 
-cd $BUILT_ROOT
+cd $BUILD_ROOT
