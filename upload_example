@@ -3,9 +3,7 @@
 # this is kind of dirty nasty, but create directories, then upload
 #
 
-VER=$(cat ../aokpcb/vendor/aokp/products/common_versions.mk | grep "TARGET_PRODUCT" | cut -f3 -d '_' | cut -f1 -d ' ')
-NAME=pcbblue_$1_$VER.zip
-mkdir -p ~/public_html/$1
-cp ./$NAME ~/public_html/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip &
-cd ~/public_html/$1/
+VER=$(cat ../AOKPCB/vendor/aokp/products/common_versions.mk | grep "TARGET_PRODUCT" | cut -f3 -d '_' | cut -f1 -d ' ')
+NAME=aokpcb_$1_$VER.zip
+cp ./$NAME /home/remicks/public_html/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip
 md5sum aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip | cat >> aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip.md5
