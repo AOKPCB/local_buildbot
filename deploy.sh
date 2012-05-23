@@ -1,11 +1,8 @@
 #!/bin/bash
 
-KANGS=/home/remicks
 BUILD_ROOT=`pwd`
-
-cd $KANGS
-./cherrypicks.sh
 cd $BUILD_ROOT
+repo sync
 . build/envsetup.sh
 
 # parse options
@@ -45,7 +42,7 @@ else
 fi
 
 # make sure file exists
-if [ ! -f vendor/$VENDOR/vendorsetup.shh ]; then
+if [ ! -f vendor/$VENDOR/vendorsetup.sh ]; then
     echo "vendorsetup.sh not found"
     echo "exiting..."
     exit 1
