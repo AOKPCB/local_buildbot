@@ -4,7 +4,6 @@
 # $2 should be device name
 # select device and prepare varibles
 BUILD_ROOT=`pwd`
-
 cd $BUILD_ROOT
 . build/envsetup.sh
 lunch $1
@@ -27,9 +26,9 @@ fi
 
 # build
 if [ "$BACON" = "true" ]; then
-    make -j4 bacon 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
+    make -j$(($(grep processor /proc/cpuinfo | wc -l) * 2)) bacon 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
 else
-    make -j4 otapackage 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
+    make -j$(($(grep processor /proc/cpuinfo | wc -l) * 2)) otapackage 2>&1 | tee "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log
 fi
 
 # clean out of previous zip
@@ -38,18 +37,30 @@ if [ "$BACON" = "true" ]; then
 else
     ZIP=$(grep "Package OTA" "$ANDROID_PRODUCT_OUT"/"$TARGET_PRODUCT"_bot.log | cut -f5 -d '/')
 fi
-OUTD=/home/remicks/public_html
-PRIV=/home/remicks/private_html
-mkdir $OUTD/$2/
-mkdir $PRIV/$2/
-cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$2/aokpcb_$2-$(date +%Y%m%d-%H%M).zip
-cp "$ANDROID_PRODUCT_OUT"/*_bot.log $PRIV/$2/aokpcb_$2-$(date +%Y%m%d-%H%M)_bot.log
+OUTD=$(echo $(cd ../upload && pwd))
+rm $OUTD/$ZIP
+cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$ZIP
 
 # finish
 echo "$2 build complete"
 
 # md5sum list
-cd $OUTD/$2/
-md5sum aokpcb_$2-$(date +%Y%m%d-%H%M).zip | cat >> aokpcb_$2-$(date +%Y%m%d-%H%M).zip.md5
+cd $OUTD
+md5sum $ZIP | cat >> md5sum
+
+# upload
+echo "checking on upload reference file"
+
+BUILDBOT=$BUILD_ROOT/vendor/$TARGET_VENDOR/bot/
+cd $BUILDBOT
+if test -x upload ; then
+    echo "Upload file exists, executing now"
+    cp upload $OUTD
+    cd $OUTD
+    # device and zip names are passed on for upload
+    ./upload $2 $ZIP && rm upload
+else
+    echo "No upload file found (or set to +x), build complete."
+fi
 
 cd $BUILD_ROOT
