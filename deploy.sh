@@ -58,7 +58,7 @@ while read line ;do
     # vzwtab
     DEVNAME=$(echo $line | cut -f2 -d ' ' | cut -f2 -d '_' | cut -f1 -d '-')
     # build_device <lunch combo> <device name>
-    ./vendor/$ROM_VENDOR/bot/build_device.sh $line $DEVNAME
+    ./vendor/$VENDOR/bot/build_device.sh $line $DEVNAME
 done < .bot_lunch
 
 # don't be messy
