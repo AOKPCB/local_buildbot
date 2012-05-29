@@ -3,6 +3,9 @@
 # $1 should be lunch combo
 # $2 should be device name
 # select device and prepare varibles
+
+ln -s /tmp/ramdisk8g/out /home/remicks/android/AOKPCB/out
+
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
 . build/envsetup.sh
@@ -64,3 +67,4 @@ else
 fi
 
 cd $BUILD_ROOT
+rm -rf out
