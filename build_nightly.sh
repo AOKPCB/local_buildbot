@@ -6,8 +6,8 @@
 
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
-rm -rf out
-ln -s /tmp/ramdisk/out /home/remicks/android/AOKPCB/out
+rm -rf out/target
+ln -s /tmp/ramdisk/remicks /home/remicks/android/AOKPCB/out/target
 . build/envsetup.sh
 lunch $1
 
@@ -67,4 +67,4 @@ else
 fi
 
 cd $BUILD_ROOT
-rm -rf out
+rm -rf out/target
