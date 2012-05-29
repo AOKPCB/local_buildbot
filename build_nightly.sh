@@ -4,10 +4,9 @@
 # $2 should be device name
 # select device and prepare varibles
 
-ln -s /tmp/ramdisk/out /home/remicks/android/AOKPCB/out
-
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
+ln -s /tmp/ramdisk/out /home/remicks/android/AOKPCB/out
 rm -rf out
 . build/envsetup.sh
 lunch $1
