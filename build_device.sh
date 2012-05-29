@@ -67,4 +67,4 @@ else
 fi
 
 cd $BUILD_ROOT
-make clean
+rm -rf out
