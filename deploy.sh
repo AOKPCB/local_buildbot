@@ -2,7 +2,6 @@
 
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
-repo sync
 . build/envsetup.sh
 
 # parse options
