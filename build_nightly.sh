@@ -12,7 +12,7 @@ cd $CCACHE
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
 rm -rf out/target/product
-mkdir out
+mkdir -p out
 ln -s /tmp/ramdisk/remicks /home/remicks/android/AOKPCB/out/target
 . build/envsetup.sh
 lunch $1
