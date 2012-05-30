@@ -50,22 +50,10 @@ echo "$2 build complete"
 
 # md5sum list
 cd $OUTD
-md5sum $ZIP | cat >> "$ZIP".md5sum
-
-# upload
-echo "checking on upload reference file"
-
-BUILDBOT=$BUILD_ROOT/vendor/$TARGET_VENDOR/bot/
-cd $BUILDBOT
-if test -x upload2 ; then
-    echo "Upload file exists, executing now"
-    cp upload2 $OUTD
-    cd $OUTD
-    # device and zip names are passed on for upload
-    ./upload2 $2 $ZIP && rm upload2
-else
-    echo "No upload file found (or set to +x), build complete."
-fi
+VER=$(cat /home/remicks/android/AOKPCB/vendor/aokp/configs/common_versions.mk | grep "TARGET_PRODUCT" | cut -f3 -d '_' | cut -f1 -d ' ')
+cp ./$ZIP /home/remicks/public_html/official_releases/R2/$ZIP
+cd /home/remicks/public_html/official_releases/R2
+md5sum $ZIP | cat >> "$ZIP".md5
 
 cd $BUILD_ROOT
 rm -rf out/target
