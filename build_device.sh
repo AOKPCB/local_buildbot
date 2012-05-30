@@ -45,15 +45,15 @@ OUTD="$BUILD_ROOT"/upload
 rm $OUTD/$ZIP
 cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$ZIP
 
-# finish
-echo "$2 build complete"
-
 # md5sum list
 cd $OUTD
 VER=$(cat /home/remicks/android/AOKPCB/vendor/aokp/configs/common_versions.mk | grep "TARGET_PRODUCT" | cut -f3 -d '_' | cut -f1 -d ' ')
-cp ./$ZIP /home/remicks/public_html/official_releases/R2/$ZIP
+cp -v ./$ZIP /home/remicks/public_html/official_releases/R2/$ZIP
 cd /home/remicks/public_html/official_releases/R2
 md5sum $ZIP | cat >> "$ZIP".md5
+
+# finish
+echo "$2 build complete"
 
 cd $BUILD_ROOT
 rm -rf out/target
