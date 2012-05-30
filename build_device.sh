@@ -3,11 +3,16 @@
 # $1 should be lunch combo
 # $2 should be device name
 # select device and prepare varibles
+CCACHE=$BUILD_DIR/prebuilt/linux-x86/ccache
 
+export USE_CCACHE=1
+export CCACHE_DIR=/home/$USER/android/.ccache
+cd $CCACHE
+./ccache -M 40G
 BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
-rm -rf out/target
-mkdir -p out/target
+rm -rf out/target/product
+mkdir -p out
 ln -s /tmp/ramdisk/remicks /home/remicks/android/AOKPCB/out/target
 . build/envsetup.sh
 lunch $1
@@ -56,4 +61,5 @@ md5sum $ZIP | cat >> "$ZIP".md5
 echo "$2 build complete"
 
 cd $BUILD_ROOT
-rm -rf out/target
+rm -rf out/target/product
+echo "Complete - Moving to next project"
