@@ -15,7 +15,7 @@ rm -rf out/target/product
 mkdir -p out
 ln -s /tmp/ramdisk/remicks /home/remicks/android/AOKPCB/out/target
 . build/envsetup.sh
-brunch $1 aokpcb_$1_test-$(date +%Y%m%d-%H%M).zip
+brunch $1 "$1"_test-$(date +%Y%m%d-%H%M).zip
 
 TARGET_VENDOR=$(echo $TARGET_PRODUCT | cut -f1 -d '_')
 
