@@ -4,6 +4,7 @@
 # $2 should be device name
 # select device and prepare varibles
 CCACHE=$BUILD_ROOT/prebuilt/linux-x86/ccache
+BACON=true
 
 export USE_CCACHE=1
 export CCACHE_DIR=/home/$USER/android/.ccache
@@ -15,7 +16,7 @@ rm -rf out/target/product
 mkdir -p out
 ln -s /tmp/ramdisk/remicks /home/remicks/android/AOKPCB/out/target
 . build/envsetup.sh
-brunch $1 "$1"_test-$(date +%Y%m%d-%H%M).zip
+lunch aokpcb_"$1"-userdebug
 
 TARGET_VENDOR=$(echo $TARGET_PRODUCT | cut -f1 -d '_')
 
@@ -45,7 +46,7 @@ rm $OUTD/$ZIP
 cp "$ANDROID_PRODUCT_OUT"/$ZIP $OUTD/$ZIP
 
 # finish
-echo "$2 build complete"
+echo "$1 build complete"
 
 # md5sum list
 cd $OUTD
