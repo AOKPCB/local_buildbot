@@ -3,7 +3,7 @@
 # $1 should be lunch combo
 # $2 should be device name
 # select device and prepare varibles
-CCACHE=$BUILD_DIR/prebuilt/linux-x86/ccache
+CCACHE=$BUILD_ROOT/prebuilt/linux-x86/ccache
 
 export USE_CCACHE=1
 export CCACHE_DIR=/home/$USER/android/.ccache
