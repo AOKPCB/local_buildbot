@@ -3,13 +3,13 @@
 # $1 should be lunch combo
 # $2 should be device name
 # select device and prepare varibles
-CCACHE=$BUILD_DIR/prebuilt/linux-x86/ccache
+BUILD_ROOT=`pwd`
+CCACHE=$BUILD_ROOT/prebuilt/linux-x86/ccache
 
 export USE_CCACHE=1
 export CCACHE_DIR=/home/$USER/android/.ccache
 cd $CCACHE
 ./ccache -M 40G
-BUILD_ROOT=`pwd`
 cd $BUILD_ROOT
 rm -rf out/target/product
 mkdir -p out
