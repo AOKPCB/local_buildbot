@@ -7,4 +7,6 @@ VER=$(cat /home/remicks/android/AOKPCB/vendor/aokp/configs/common_versions.mk | 
 NAME=aokpcb_$1_$VER.zip
 cp ./$NAME /home/remicks/public_html/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip
 cd /home/remicks/public_html/$1/
+rm "$1".txt
+echo "http://aokpcb.boom.net/nightlies/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip >> "$1".txt
 md5sum aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip | cat >> aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip.md5
