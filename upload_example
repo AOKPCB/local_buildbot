@@ -7,6 +7,11 @@ VER=$(cat /home/remicks/android/AOKPCB/vendor/aokp/configs/common_versions.mk | 
 NAME=aokpcb_$1_$VER.zip
 cp ./$NAME /home/remicks/public_html/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip
 cd /home/remicks/public_html/$1/
-rm "$1".txt
-echo "http://aokpcb.boom.net/nightlies/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip" >> "$1".txt
 md5sum aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip | cat >> aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip.md5
+
+# Companion app area
+cd ~/private_html
+mkdir -p app/$1
+rm app/$1.txt
+echo "1" >> app/$1.txt
+echo "http://aokpcb.boom.net/nightlies/$1/aokpcb_$1_$VER-$(date +%Y%m%d-%H%M).zip" >> app/$1.txt
